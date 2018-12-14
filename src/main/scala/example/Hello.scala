@@ -13,8 +13,7 @@ object Hello extends Greeting with App {
 
   val test = loadData()
   println("test")
-  println(test.map(car => car.isFailing))
- println(carsFailsAverageTemperature())
+  println(PourcentageFailBecauseOfFuel())
   println("test")
 
 
@@ -30,6 +29,7 @@ object Hello extends Greeting with App {
     // Look at the Tweet Object in the TweetUtils class.
     sc.textFile(pathToFile)
       .mapPartitions(VoitureUtils.parseFromJson(_))
+      .cache()
   }
 
   def carsFailsRDD() : RDD[Voiture] = {
@@ -38,10 +38,10 @@ object Hello extends Greeting with App {
   }
 
   def carsFailsAverageTemperature(): Double = {
-    val carsFails = carsFailsRDD()
-    carsFails
+    carsFailsRDD
+      // rajouter un check is carsFails retourne rien, sinon ça pête
       .map(car => car.engineTemperature)
-      .sum / carsFails.count()
+      .sum / carsFailsRDD.count()
   }
 
   def carsMovingRDD() : RDD[Voiture] = {
@@ -59,6 +59,17 @@ object Hello extends Greeting with App {
   def CheckTempatureFailsCarsIsHigher(): Boolean = {
     carsFailsAverageTemperature() > carsMovingAverageTemperature()
   }
+
+  def nbCarsFailingWithNoFuel() : Double = {
+    carsFailsRDD()
+      .filter(car => car.fuelInTank == 0)
+      .count()
+  }
+
+  def PourcentageFailBecauseOfFuel(): Double = {
+    nbCarsFailingWithNoFuel() / carsFailsRDD().count()
+  }
+
 
 }
 
