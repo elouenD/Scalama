@@ -21,9 +21,12 @@ object Hello extends Greeting with App {
   val SFLONGITUDEMAX = -122.374243
 
   val test = loadData()
-  println("test")
-  println(CarsIsFailingMoreInParis())
-  println("test")
+  println("Test: ")
+  println("température moyenne du moteur d'une voiture en panne: " +  carsFailsAverageTemperature());
+  println("température moyenne du moteur est plus élevé en panne: " +  checkTempatureFailsCarsIsHigher());
+  println("Les véhicules tombent plus en panne à Paris: " +  carsIsFailingMoreInParis());
+  println("pourcentage de véhicule qui tombent en panne par manque de carburant: " +  pourcentageFailBecauseOfFuel());
+  println("Fin des tests")
 
 
   def loadData(): RDD[Voiture] = {
@@ -52,6 +55,16 @@ object Hello extends Greeting with App {
 
   /**
     *
+    * @return list de voiture qui ne fail pas
+    */
+  def carsMovingsRDD() : RDD[Voiture] = {
+    loadData()
+      .filter(car => !car.isFailing)
+  }
+
+
+  /**
+    *
     * @return temperature moyenne des voitures qui fail
     */
   def carsFailsAverageTemperature(): Double = {
@@ -72,10 +85,9 @@ object Hello extends Greeting with App {
 
   /**
     *
-    * @return average temperatur for moving cars
+    * @return average temperature for moving cars
     */
   def carsMovingAverageTemperature(): Double = {
-    val carsMovingRDD = carsFailsRDD()
     carsMovingRDD
       .map(car => car.engineTemperature)
       .sum / carsMovingRDD.count()
@@ -83,9 +95,9 @@ object Hello extends Greeting with App {
 
   /**
     *
-    * @return is the temperatur for failing cars is higher
+    * @return si la température est plus élevé pour une voiture en déplacement
     */
-  def CheckTempatureFailsCarsIsHigher(): Boolean = {
+  def checkTempatureFailsCarsIsHigher(): Boolean = {
     carsFailsAverageTemperature() > carsMovingAverageTemperature()
   }
 
@@ -104,7 +116,7 @@ object Hello extends Greeting with App {
     *
     * @return le pourcentage de voiture qui fail à cause du carburant
     */
-  def PourcentageFailBecauseOfFuel(): Double = {
+  def pourcentageFailBecauseOfFuel(): Double = {
     nbCarsFailingWithNoFuel() / carsFailsRDD().count()
   }
 
@@ -138,7 +150,7 @@ object Hello extends Greeting with App {
     *
     * @return true si il y a plus de cars qui fail à Paris, sinon false
     */
-  def CarsIsFailingMoreInParis(): Boolean = {
+  def carsIsFailingMoreInParis(): Boolean = {
     nbCarsFailingInParis() > nbCarsFailingInSanFransisco()
   }
 
