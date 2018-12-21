@@ -55,16 +55,6 @@ object Hello extends Greeting with App {
 
   /**
     *
-    * @return list de voiture qui ne fail pas
-    */
-  def carsMovingsRDD() : RDD[Voiture] = {
-    loadData()
-      .filter(car => !car.isFailing)
-  }
-
-
-  /**
-    *
     * @return temperature moyenne des voitures qui fail
     */
   def carsFailsAverageTemperature(): Double = {
@@ -80,7 +70,7 @@ object Hello extends Greeting with App {
     */
   def carsMovingRDD() : RDD[Voiture] = {
     loadData()
-      .filter(car => car.isMoving)
+      .filter(car => car.isMoving && !car.isFailing)
   }
 
   /**

@@ -1,3 +1,6 @@
 {  "lat": 48.866667,  "long": 2.333333,  "vehiculeId": "b42",  "isFailing": false,  "temperature": 11,  "engineTemperature": 40,  "fuelInTank": 4,  "isMoving": true,  "timestamp": 1544272165}
 {  "lat": 37.7749,  "long": 2.3,  "vehiculeId": "bsdfdsf42",  "isFailing": true,  "temperature": 1,  "engineTemperature": 10,  "fuelInTank": 4,  "isMoving": true,  "timestamp": 1544272165 }
-{  "lat": 48.866667,  "long": 2.3,  "vehiculeId": "bsdfdsf42",  "isFailing": true,  "temperature": 1,  "engineTemperature": 20,  "fuelInTank": 0,  "isMoving": true,  "timestamp": 1544272165 }
+{  "lat": 48.866667,  "long": 2.3,  "vehiculeId": "bsdfdsf42",  "isFailing": true,  "temperature": 1,  "engineTemperature": 20,  "fuelInTank": 0,  "isMoving": true,  "timestamp": 1544272166 }
+{  "lat": 48.866667,  "long": 2.3,  "vehiculeId": "bsdfdsf43",  "isFailing": true,  "temperature": 1,  "engineTemperature": 1,  "fuelInTank": 0,  "isMoving": true,  "timestamp": 1544272166 }
+{  "lat": 48.866667,  "long": 2.3,  "vehiculeId": "bsdfdsf43",  "isFailing": true,  "temperature": 1,  "engineTemperature": 20,  "fuelInTank": 0,  "isMoving": true,  "timestamp": 1544272166 }
+{  "lat": 48.866667,  "long": 2.3,  "vehiculeId": "bsdfdsf42",  "isFailing": true,  "temperature": 1,  "engineTemperature": 23,  "fuelInTank": 0,  "isMoving": true,  "timestamp": 1544272166 }
